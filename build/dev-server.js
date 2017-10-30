@@ -50,6 +50,18 @@ apiRoutes.get('/getSliderList', function (req, res) {
   })
 })
 
+apiRoutes.get('/updateSliderStatus', function (req, res) {
+  var url = 'http://localhost/api/public/index/api/updateSliderStatus'
+
+  axios.get(url, {
+    params: req.query
+  }).then((response) => {
+    res.json(response.data)
+  }).catch((e) => {
+    console.log(e)
+  })
+})
+
 app.use('/index/api', apiRoutes)
 
 const compiler = webpack(webpackConfig)

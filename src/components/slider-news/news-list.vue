@@ -57,7 +57,8 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import {getSliderList} from 'api/adminApi'
+  import {getSliderList, updateSliderStatus} from 'api/adminApi'
+  import {mapMutations} from 'vuex'
 
   export default {
     data() {
@@ -72,20 +73,33 @@
       }, 20)
     },
     methods: {
+      ...mapMutations({
+        setNewslist: 'SET_NEWSLIST'
+      }),
       getSliderList() {
         getSliderList(this.page).then((res) => {
           this.items = res
+          this.setNewslist(this.items)
         })
         this.page++
       },
       edit(item) {
-        this.$router.push()
+        this.$router.push({
+          path: '/slidernews',
+          query: {id: item.id}
+        })
       },
       enable(item) {
-        item.status = 1
+        updateSliderStatus(item.id, 1).then((res) => {
+          console.log(res)
+          item.status = 1
+        })
       },
       disable(item) {
-        item.status = 0
+        updateSliderStatus(item.id, 0).then((res) => {
+          console.log(res)
+          item.status = 0
+        })
       }
     }
   }

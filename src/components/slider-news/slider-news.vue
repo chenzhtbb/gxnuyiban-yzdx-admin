@@ -26,6 +26,7 @@
             <!-- /.box-body -->
             <div class="box-footer">
               <button class="btn btn-primary" @click="putSliderNews">发布</button>
+              <button class="btn btn-success" @click="back">返回</button>
             </div>
           </form>
         </div>
@@ -52,6 +53,7 @@
 
 <script type="text/ecmascript-6">
   import {addSliderNews} from 'api/adminApi'
+  import {mapGetters} from 'vuex'
 
   export default {
     data() {
@@ -61,11 +63,31 @@
         author: ''
       }
     },
+    computed: {
+      ...mapGetters([
+        'newslist'
+      ])
+    },
+    mounted() {
+      this.id = this.$route.query.id
+      if (this.id) {
+        this.title = this.newslist[this.id - 1].title
+        this.link = this.newslist[this.id - 1].link
+        this.author = this.newslist[this.id - 1].author
+      }
+    },
     methods: {
+      back() {
+        this.$router.push('/newslist')
+      },
       putSliderNews() {
-        addSliderNews(this.title, this.link, this.author).then((res) => {
-          console.log(res)
-        })
+        if (this.id) {
+
+        } else {
+          addSliderNews(this.title, this.link, this.author).then((res) => {
+            console.log(res)
+          })
+        }
       },
       refresh() {
         this.$refs.iframe.src = this.link
