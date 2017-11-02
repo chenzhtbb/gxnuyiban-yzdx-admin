@@ -14,7 +14,7 @@
             </div>
           </div>
           <div class="box-button">
-            <router-link tag="button" to="/slidernews" class="btn btn-sm btn-primary">添加</router-link>
+            <router-link tag="button" to="/admin/slidernews" class="btn btn-sm btn-primary">添加</router-link>
           </div>
         </div>
         <!-- /.box-header -->
@@ -30,24 +30,56 @@
               <th>操作</th>
             </tr>
             <tr v-for="item in items">
-              <td>{{item.id}}</td>
+              <td class="col-xs-1">{{item.id}}</td>
               <td class="col-xs-4">{{item.title}}</td>
               <td>{{item.author}}</td>
               <td>
-                <a :href="item.link">链接</a>
+                <a :href="item.link" target="view_window">链接</a>
               </td>
               <td>
-                <div class="label label-success" v-if="item.status===1">启用</div>
+                <div class="label label-success" v-if="item.status=='1'">启用</div>
                 <div class="label label-danger" v-else>下架</div>
               </td>
               <td>
                 <button class="btn btn-xs btn-primary" @click="edit(item)">编辑</button>
-                <button class="btn btn-xs btn-danger" v-if="item.status===1" @click="disable(item)">下架</button>
+                <button class="btn btn-xs btn-danger" v-if="item.status=='1'" @click="disable(item)">下架</button>
                 <button class="btn btn-xs btn-success" v-else @click="enable(item)">启用</button>
               </td>
             </tr>
             </tbody>
           </table>
+          <div class="row next-page">
+            <div class="col-xs-12">
+              <div class="dataTables_paginate paging_simple_numbers">
+                <ul class="pagination next-right">
+                  <li class="paginate_button previous disabled">
+                    <a href="#">上一页</a>
+                  </li>
+                  <li class="paginate_button active">
+                    <a href="#">1</a>
+                  </li>
+                  <li class="paginate_button ">
+                    <a href="#">2</a>
+                  </li>
+                  <li class="paginate_button ">
+                    <a href="#">3</a>
+                  </li>
+                  <li class="paginate_button ">
+                    <a href="#">4</a>
+                  </li>
+                  <li class="paginate_button ">
+                    <a href="#">5</a>
+                  </li>
+                  <li class="paginate_button ">
+                    <a href="#">6</a>
+                  </li>
+                  <li class="paginate_button next">
+                    <a href="#">下一页</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- /.box-body -->
       </div>
@@ -118,4 +150,14 @@
   tr > td {
     text-align: center;
   }
+
+  .next-page
+    position relative
+    width 100%
+    height 80px
+
+  .next-right
+    position absolute
+    right 0
+
 </style>

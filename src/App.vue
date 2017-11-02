@@ -1,16 +1,13 @@
 <template>
   <div id="app">
-    <admin></admin>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Admin from '@/components/admin/admin'
-export default {
-  components: {
-    Admin
+  export default {
+    name: 'app'
   }
-}
 </script>
 
 <style>

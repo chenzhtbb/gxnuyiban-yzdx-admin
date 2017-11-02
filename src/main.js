@@ -3,6 +3,9 @@ import Vue from 'vue'
 import App from './App'
 import store from './store'
 import router from './router'
+/* eslint-disable no-unused-vars */
+import $ from 'jquery'
+import './permission'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'

@@ -78,7 +78,7 @@
     },
     methods: {
       back() {
-        this.$router.push('/newslist')
+        this.$router.push('/admin/newslist')
       },
       putSliderNews() {
         if (this.id) {

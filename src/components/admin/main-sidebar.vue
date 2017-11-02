@@ -35,13 +35,13 @@
         <!-- Optionally, you can add icons to the links -->
         <!-- <li class="active"> -->
         <li>
-          <router-link tag="a" to="/home">
+          <router-link tag="a" to="/admin/home">
             <i class="fa fa-link"></i>
             <span>首页</span>
           </router-link>
         </li>
         <li>
-          <router-link tag="a" to="/newslist">
+          <router-link tag="a" to="/admin/newslist">
             <i class="fa fa-link"></i>
             <span>轮播新闻</span>
           </router-link>
@@ -56,10 +56,10 @@
           </a>
           <ul class="treeview-menu">
             <li>
-              <router-link tag="a" to="/home/1">宿舍报修</router-link>
+              <router-link tag="a" to="/admin/home/1">宿舍报修</router-link>
             </li>
             <li>
-              <router-link tag="a" to="/home/2">网络报修</router-link>
+              <router-link tag="a" to="/admin/home/2">网络报修</router-link>
             </li>
           </ul>
         </li>

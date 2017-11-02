@@ -27,7 +27,7 @@ const app = express()
 var apiRoutes = express.Router()
 
 apiRoutes.get('/addSliderNews', function (req, res) {
-  var url = 'http://localhost/api/public/index/api/addSliderNews'
+  var url = 'http://localhost/api/public/index/admin/addSliderNews'
 
   axios.get(url, {
     params: req.query
@@ -39,7 +39,7 @@ apiRoutes.get('/addSliderNews', function (req, res) {
 })
 
 apiRoutes.get('/getSliderList', function (req, res) {
-  var url = 'http://localhost/api/public/index/api/getSliderList'
+  var url = 'http://localhost/api/public/index/admin/getSliderList'
 
   axios.get(url, {
     params: req.query
@@ -51,7 +51,7 @@ apiRoutes.get('/getSliderList', function (req, res) {
 })
 
 apiRoutes.get('/updateSliderStatus', function (req, res) {
-  var url = 'http://localhost/api/public/index/api/updateSliderStatus'
+  var url = 'http://localhost/api/public/index/admin/updateSliderStatus'
 
   axios.get(url, {
     params: req.query
@@ -62,7 +62,29 @@ apiRoutes.get('/updateSliderStatus', function (req, res) {
   })
 })
 
-app.use('/index/api', apiRoutes)
+apiRoutes.post('/login', function (req, res) {
+  var url = 'http://localhost/api/public/index/admin/login'
+  console.log(req)
+  axios.post(url, req).then((response) => {
+    res.json(response.data)
+  }).catch((e) => {
+    console.log(e)
+  })
+})
+
+apiRoutes.get('/logout', function (req, res) {
+  var url = 'http://localhost/api/public/index/admin/logout'
+
+  axios.get(url, {
+    params: req.query
+  }).then((response) => {
+    res.json(response.data)
+  }).catch((e) => {
+    console.log(e)
+  })
+})
+
+app.use('/index/admin', apiRoutes)
 
 const compiler = webpack(webpackConfig)
 

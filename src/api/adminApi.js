@@ -45,3 +45,24 @@ export function updateSliderStatus(id = 0, status) {
     return Promise.resolve(res.data)
   })
 }
+
+export function login(username, password) {
+  const url = prefix + '/login'
+
+  const formData = new FormData()
+  formData.append('username', username)
+  formData.append('password', password)
+
+  const config = {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  }
+  return axios.post(url, formData, config).then((res) => {
+    return Promise.resolve(res.data)
+  })
+}
+
+export function logout() {
+
+}

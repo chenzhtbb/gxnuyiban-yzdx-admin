@@ -147,7 +147,7 @@
                     <a href="#">Friends</a>
                   </div>
                 </div>
-                <!-- /.row 
+                <!-- /.row
               </li> -->
               <!-- Menu Footer-->
               <li class="user-footer">
@@ -155,7 +155,7 @@
                   <a href="#" class="btn btn-default btn-flat">修改密码</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">登出</a>
+                  <a href="#" class="btn btn-default btn-flat" @click="logout">登出</a>
                 </div>
               </li>
             </ul>
@@ -171,6 +171,16 @@
 </template>
 
 <script>
+  import {removeToken} from 'src/common/js/auth'
+
+  export default {
+    methods: {
+      logout() {
+        removeToken()
+        this.$router.push('/login')
+      }
+    }
+  }
 </script>
 
 <style scoped>

@@ -10,26 +10,37 @@ import Admin from '@/components/admin/admin'
 Vue.use(Router)
 
 export default new Router({
+  // base: '/yzdxamdin/',
   routes: [
     {
       path: '/',
-      component: Login
+      redirect: '/admin'
     },
     {
       path: '/admin',
-      component: Admin
+      component: Admin,
+      children: [
+        {
+          path: '/',
+          redirect: 'home'
+        },
+        {
+          path: 'home',
+          component: Home
+        },
+        {
+          path: 'newslist',
+          component: NewsList
+        },
+        {
+          path: 'slidernews',
+          component: SliderNews
+        }
+      ]
     },
     {
-      path: '/home',
-      component: Home
-    },
-    {
-      path: '/newslist',
-      component: NewsList
-    },
-    {
-      path: '/slidernews',
-      component: SliderNews
+      path: '/login',
+      component: Login
     }
   ]
 })
