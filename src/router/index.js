@@ -4,7 +4,7 @@ import Home from '@/components/home/home'
 import NewsList from '@/components/slider-news/news-list'
 import SliderNews from '@/components/slider-news/slider-news'
 import Login from '@/components/login'
-
+import BookList from '@/components/book/book-list'
 import Admin from '@/components/admin/admin'
 
 Vue.use(Router)
@@ -27,6 +27,10 @@ export default new Router({
         {
           path: 'home',
           component: Home
+        },
+        {
+          path: 'booklist',
+          component: BookList
         },
         {
           path: 'newslist',

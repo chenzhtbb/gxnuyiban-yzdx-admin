@@ -46,6 +46,12 @@
             <span>轮播新闻</span>
           </router-link>
         </li>
+        <li>
+          <router-link tag="a" to="/admin/booklist">
+            <i class="fa fa-link"></i>
+            <span>电话簿</span>
+          </router-link>
+        </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-link"></i>

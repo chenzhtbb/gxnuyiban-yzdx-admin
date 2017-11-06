@@ -1,9 +1,9 @@
 <template>
-  <div class="news-list">
+  <div class="book-list">
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <router-link tag="button" to="/admin/slidernews" class="btn btn-sm btn-primary">添加话题</router-link>
+          <router-link tag="button" to="/admin/slidernews" class="btn btn-sm btn-primary">添加电话</router-link>
           <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
               <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
@@ -20,25 +20,24 @@
             <tbody>
             <tr>
               <th>编号</th>
-              <th>标题</th>
-              <th>作者</th>
-              <th>链接</th>
+              <th>部门</th>
+              <th>类别</th>
+              <th>电话</th>
               <th>状态</th>
               <th>操作</th>
             </tr>
             <tr v-for="item in items">
               <td class="col-xs-1">{{item.id}}</td>
-              <td class="col-xs-4">{{item.title}}</td>
-              <td>{{item.author}}</td>
-              <td>
-                <a :href="item.link" target="view_window">链接</a>
-              </td>
+              <td class="col-xs-4">{{item.name}}</td>
+              <td>{{item.type}}</td>
+              <td>{{item.tel}}</td>
               <td>
                 <div class="label label-success" v-if="item.status=='1'">启用</div>
                 <div class="label label-danger" v-else>下架</div>
               </td>
               <td>
                 <button class="btn btn-xs btn-primary" @click="edit(item)">编辑</button>
+                <button class="btn btn-xs btn-warning" @click="del(item)">删除</button>
                 <button class="btn btn-xs btn-danger" v-if="item.status=='1'" @click="disable(item)">下架</button>
                 <button class="btn btn-xs btn-success" v-else @click="enable(item)">启用</button>
               </td>
@@ -86,8 +85,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import {getSliderList, updateSliderStatus} from 'api/adminApi'
-  import {mapMutations} from 'vuex'
+  import {getBookList, updateBookStatus, deleteBookItem} from 'src/api/book'
 
   export default {
     data() {
@@ -96,36 +94,27 @@
       }
     },
     mounted() {
-      this.page = 0
-      setTimeout(() => {
-        this.getSliderList(this.page)
-      }, 20)
+      getBookList().then((res) => {
+        this.items = res
+      })
     },
     methods: {
-      ...mapMutations({
-        setNewslist: 'SET_NEWSLIST'
-      }),
-      getSliderList() {
-        getSliderList(this.page).then((res) => {
-          this.items = res
-          this.setNewslist(this.items)
+      del(item) {
+        deleteBookItem(item.id).then((res) => {
+          console.log(res)
         })
-        this.page++
       },
       edit(item) {
-        this.$router.push({
-          path: '/slidernews',
-          query: {id: item.id}
-        })
+        console.log(item)
       },
       enable(item) {
-        updateSliderStatus(item.id, 1).then((res) => {
+        updateBookStatus(item.id, 1).then((res) => {
           console.log(res)
           item.status = 1
         })
       },
       disable(item) {
-        updateSliderStatus(item.id, 0).then((res) => {
+        updateBookStatus(item.id, 0).then((res) => {
           console.log(res)
           item.status = 0
         })
@@ -135,7 +124,6 @@
 </script>
 
 <style scoped lang="stylus" ref="stylesheet/stylus">
-
   tr > th {
     text-align: center;
   }
@@ -152,5 +140,4 @@
   .next-right
     position absolute
     right 0
-
 </style>

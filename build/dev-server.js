@@ -84,6 +84,42 @@ apiRoutes.get('/logout', function (req, res) {
   })
 })
 
+apiRoutes.get('/getBookList', function (req, res) {
+  var url = 'http://localhost/api/public/index/admin/getBookList'
+
+  axios.get(url, {
+    params: req.query
+  }).then((response) => {
+    res.json(response.data)
+  }).catch((e) => {
+    console.log(e)
+  })
+})
+
+apiRoutes.get('/updateBookStatus', function (req, res) {
+  var url = 'http://localhost/api/public/index/admin/updateBookStatus'
+
+  axios.get(url, {
+    params: req.query
+  }).then((response) => {
+    res.json(response.data)
+  }).catch((e) => {
+    console.log(e)
+  })
+})
+
+apiRoutes.get('/deleteBookItem', function (req, res) {
+  var url = 'http://localhost/api/public/index/admin/deleteBookItem'
+
+  axios.get(url, {
+    params: req.query
+  }).then((response) => {
+    res.json(response.data)
+  }).catch((e) => {
+    console.log(e)
+  })
+})
+
 app.use('/index/admin', apiRoutes)
 
 const compiler = webpack(webpackConfig)
