@@ -20,15 +20,17 @@
             <tbody>
             <tr>
               <th>编号</th>
+              <th>名称</th>
               <th>部门</th>
               <th>类别</th>
               <th>电话</th>
               <th>状态</th>
               <th>操作</th>
             </tr>
-            <tr v-for="item in items">
+            <tr v-for="item in items.data">
               <td class="col-xs-1">{{item.id}}</td>
-              <td class="col-xs-4">{{item.name}}</td>
+              <td class="col-xs-3">{{item.name}}</td>
+              <td class="col-xs-3">{{item.department}}</td>
               <td>{{item.type}}</td>
               <td>{{item.tel}}</td>
               <td>
@@ -48,29 +50,27 @@
             <div class="col-xs-12">
               <div class="dataTables_paginate paging_simple_numbers">
                 <ul class="pagination next-right">
-                  <li class="paginate_button previous disabled">
-                    <a href="#">上一页</a>
-                  </li>
-                  <li class="paginate_button active">
-                    <a href="#">1</a>
+                  <li class="paginate_button previous" :class="items.current_page == 1 ? 'disabled' : ''">
+                    <a href="#" @click="nextPage(items.current_page - 1)">上一页</a>
                   </li>
                   <li class="paginate_button ">
-                    <a href="#">2</a>
+                    <a href="#">{{items.current_page}}</a>
                   </li>
-                  <li class="paginate_button ">
-                    <a href="#">3</a>
+                  <li class="paginate_button">
+                    <a href="#"
+                       @click="nextPage(items.current_page + 1)">{{items.current_page + 1}}</a>
                   </li>
-                  <li class="paginate_button ">
-                    <a href="#">4</a>
+                  <li class="paginate_button">
+                    <a href="#" @click="nextPage(items.current_page + 0)">{{items.current_page + 2}}</a>
                   </li>
-                  <li class="paginate_button ">
-                    <a href="#">5</a>
+                  <li class="paginate_button" v-if="items.current_page + 3 <= items.last_page">
+                    <a href="#">...</a>
                   </li>
-                  <li class="paginate_button ">
-                    <a href="#">6</a>
+                  <li class="paginate_button" v-if="items.current_page + 3 <= items.last_page">
+                    <a href="#" @click="nextPage(items.last_page)">{{items.last_page}}</a>
                   </li>
-                  <li class="paginate_button next">
-                    <a href="#">下一页</a>
+                  <li class="paginate_button next" :class="items.last_page == items.current_page ? 'disabled' : ''">
+                    <a href="#" @click="nextPage(items.current_page + 1)">下一页</a>
                   </li>
                 </ul>
               </div>
@@ -99,6 +99,11 @@
       })
     },
     methods: {
+      nextPage(page) {
+        getBookList(page).then((res) => {
+          this.items = res
+        })
+      },
       del(item) {
         deleteBookItem(item.id).then((res) => {
           console.log(res)

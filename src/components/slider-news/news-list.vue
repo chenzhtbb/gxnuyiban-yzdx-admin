@@ -38,7 +38,8 @@
                 <div class="label label-danger" v-else>下架</div>
               </td>
               <td>
-                <button class="btn btn-xs btn-primary" @click="edit(item)">编辑</button>
+                <router-link class="btn btn-xs btn-primary" tag="button" :to="{path: 'slidernews',query: {id: item.id}}">编辑
+                </router-link>
                 <button class="btn btn-xs btn-danger" v-if="item.status=='1'" @click="disable(item)">下架</button>
                 <button class="btn btn-xs btn-success" v-else @click="enable(item)">启用</button>
               </td>
@@ -111,12 +112,6 @@
           this.setNewslist(this.items)
         })
         this.page++
-      },
-      edit(item) {
-        this.$router.push({
-          path: '/slidernews',
-          query: {id: item.id}
-        })
       },
       enable(item) {
         updateSliderStatus(item.id, 1).then((res) => {

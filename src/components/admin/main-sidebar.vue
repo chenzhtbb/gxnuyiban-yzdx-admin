@@ -8,10 +8,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img :src="photo" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Admin</p>
+          <p>{{name}}</p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
         </div>
@@ -77,6 +77,18 @@
 </template>
 
 <script>
+  export default {
+    props: {
+      photo: {
+        type: String,
+        default: '/api/public/static/img/default.jpg'
+      },
+      name: {
+        type: String,
+        default: '测试用户'
+      }
+    }
+  }
 </script>
 
 <style scoped>

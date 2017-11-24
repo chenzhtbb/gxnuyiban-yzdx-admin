@@ -1,1 +1,2 @@
 export const SET_NEWSLIST = 'SET_NEWSLIST'
+export const SET_USERINFO = 'SET_USERINFO'

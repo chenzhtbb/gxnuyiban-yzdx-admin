@@ -1,3 +1,3 @@
 // export const prefix = 'http://yiban.gxnu.edu.cn/api/public/index.php/index/api'
-export const prefix = '/index/admin'
-// export const prefix = '/api//public/index.php/index/admin'
+export const prefix = process.env.API_PREFIX
+// export const prefix = '/api/public/index.php/index/admin'

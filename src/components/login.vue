@@ -32,7 +32,7 @@
 </template>
 
 <script>
-//  import {login} from 'api/adminApi'
+  import {login} from 'api/adminApi'
   import {setToken} from 'src/common/js/auth'
 
   export default {
@@ -44,11 +44,15 @@
     },
     methods: {
       _login() {
-        setToken(1)
+//        setToken(1)
         this.$router.push('/admin')
-//        login(this.username, this.password).then((res) => {
-//          console.log(res)
-//        })
+        login(this.username, this.password).then((res) => {
+          if (res.code === 0) {
+            setToken(res.token)
+          } else {
+            alert('login error')
+          }
+        })
       }
     }
   }

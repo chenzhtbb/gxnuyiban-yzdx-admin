@@ -78,7 +78,9 @@
     },
     methods: {
       back() {
-        this.$router.push('/admin/newslist')
+        setTimeout(() => {
+          this.$router.go(-1)
+        }, 20)
       },
       putSliderNews() {
         if (this.id) {

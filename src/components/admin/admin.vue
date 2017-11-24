@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
-    <main-header></main-header>
-    <main-sidebar></main-sidebar>
+    <main-header :name="name" :type="type" :photo="photo"></main-header>
+    <main-sidebar :photo="photo" :name="name"></main-sidebar>
     <content-wrapper></content-wrapper>
     <main-footer></main-footer>
     <control-sidebar></control-sidebar>
@@ -18,6 +18,7 @@
   import ContentWrapper from './content-wrapper'
   import MainFooter from './main-footer'
   import ControlSidebar from './control-sidebar'
+  import {mapGetters} from 'vuex'
 
   export default {
     components: {
@@ -26,6 +27,25 @@
       ContentWrapper,
       MainFooter,
       ControlSidebar
+    },
+    computed: {
+      ...mapGetters([
+        'userinfo'
+      ])
+    },
+    mounted() {
+      setTimeout(() => {
+        this.name = this.userinfo.name
+        this.type = this.userinfo.type
+        this.photo = this.userinfo.photo
+      }, 20)
+    },
+    data() {
+      return {
+        name: '',
+        type: '',
+        photo: ''
+      }
     }
   }
 </script>

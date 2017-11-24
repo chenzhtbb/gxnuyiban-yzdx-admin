@@ -35,7 +35,7 @@
                     <a href="#">
                       <div class="pull-left">
                         <!-- User Image -->
-                        <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img :src="photo" class="img-circle" alt="User Image">
                       </div>
                       <!-- Message title and timestamp -->
                       <h4>
@@ -120,18 +120,18 @@
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img :src="photo" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">CHENZHTBB</span>
+              <span class="hidden-xs">{{name}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img :src="photo" class="img-circle" alt="User Image">
 
                 <p>
-                  CHENZHTBB
-                  <small>超级管理员</small>
+                  {{name}}
+                  <small>{{type}}</small>
                 </p>
               </li>
               <!-- Menu Body -->
@@ -178,6 +178,20 @@
       logout() {
         removeToken()
         this.$router.push('/login')
+      }
+    },
+    props: {
+      name: {
+        type: String,
+        default: '测试用户'
+      },
+      type: {
+        type: String,
+        default: '测试管理员'
+      },
+      photo: {
+        type: String,
+        default: '/api/public/static/img/default.jpg'
       }
     }
   }
