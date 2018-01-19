@@ -38,10 +38,12 @@
                 <div class="label label-danger" v-else>下架</div>
               </td>
               <td>
-                <router-link class="btn btn-xs btn-primary" tag="button" :to="{path: 'slidernews',query: {id: item.id}}">编辑
+                <router-link class="btn btn-xs btn-primary" tag="button"
+                             :to="{path: 'slidernews',query: {id: item.id}}">编辑
                 </router-link>
                 <button class="btn btn-xs btn-danger" v-if="item.status=='1'" @click="disable(item)">下架</button>
                 <button class="btn btn-xs btn-success" v-else @click="enable(item)">启用</button>
+                <button class="btn btn-xs btn-warning" @click="del(item)">删除</button>
               </td>
             </tr>
             </tbody>
@@ -87,7 +89,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import {getSliderList, updateSliderStatus} from 'api/adminApi'
+  import {getSliderList, updateSliderStatus, deleteSliderItem} from 'api/adminApi'
   import {mapMutations} from 'vuex'
 
   export default {
@@ -112,6 +114,13 @@
           this.setNewslist(this.items)
         })
         this.page++
+      },
+      del(item) {
+        deleteSliderItem(item.id, 1).then((res) => {
+          console.log(res)
+          this.page--
+          this.getSliderList()
+        })
       },
       enable(item) {
         updateSliderStatus(item.id, 1).then((res) => {

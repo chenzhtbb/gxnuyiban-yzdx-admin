@@ -6,6 +6,7 @@ import SliderNews from '@/components/slider-news/slider-news'
 import Login from '@/components/login'
 import BookList from '@/components/book/book-list'
 import Admin from '@/components/admin/admin'
+import Feedback from '@/components/feedback/feedback'
 
 Vue.use(Router)
 
@@ -23,6 +24,10 @@ export default new Router({
         {
           path: '/',
           redirect: 'home'
+        },
+        {
+          path: 'feedback',
+          component: Feedback
         },
         {
           path: 'home',

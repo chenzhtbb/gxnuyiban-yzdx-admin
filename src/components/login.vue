@@ -3,7 +3,7 @@
     <div class="hold-transition login-page">
       <div class="login-box">
         <div class="login-logo">
-          <a href="../../index2.html"><b>易知独秀</b>后台管理系统</a>
+          <a href="javascript:;"><b>易知独秀</b>后台管理系统</a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
@@ -44,11 +44,12 @@
     },
     methods: {
       _login() {
-//        setToken(1)
+        setToken(1)
         this.$router.push('/admin')
         login(this.username, this.password).then((res) => {
           if (res.code === 0) {
             setToken(res.token)
+            this.$router.push('/admin')
           } else {
             alert('login error')
           }

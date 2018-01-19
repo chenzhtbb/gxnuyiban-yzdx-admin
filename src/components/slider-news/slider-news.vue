@@ -8,7 +8,7 @@
           </div>
           <!-- /.box-header -->
           <!-- form start -->
-          <form role="form">
+          <div role="form">
             <div class="box-body">
               <div class="form-group">
                 <label>话题标题</label>
@@ -28,7 +28,7 @@
               <button class="btn btn-primary" @click="putSliderNews">发布</button>
               <button class="btn btn-success" @click="back">返回</button>
             </div>
-          </form>
+          </div>
         </div>
       </div>
       <div class="col-md-9">

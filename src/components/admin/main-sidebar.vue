@@ -47,6 +47,12 @@
           </router-link>
         </li>
         <li>
+          <router-link tag="a" to="/admin/feedback">
+            <i class="fa fa-link"></i>
+            <span>意见反馈</span>
+          </router-link>
+        </li>
+        <li>
           <router-link tag="a" to="/admin/booklist">
             <i class="fa fa-link"></i>
             <span>电话簿</span>

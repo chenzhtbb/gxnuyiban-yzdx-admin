@@ -62,6 +62,18 @@ apiRoutes.get('/updateSliderStatus', function (req, res) {
   })
 })
 
+apiRoutes.get('/deleteSliderItem', function (req, res) {
+  var url = 'http://localhost/api/public/index/admin/deleteSliderItem'
+
+  axios.get(url, {
+    params: req.query
+  }).then((response) => {
+    res.json(response.data)
+  }).catch((e) => {
+    console.log(e)
+  })
+})
+
 apiRoutes.post('/login', function (req, res) {
   var url = 'http://localhost/api/public/index/admin/login'
   console.log(req)
@@ -74,6 +86,18 @@ apiRoutes.post('/login', function (req, res) {
 
 apiRoutes.get('/logout', function (req, res) {
   var url = 'http://localhost/api/public/index/admin/logout'
+
+  axios.get(url, {
+    params: req.query
+  }).then((response) => {
+    res.json(response.data)
+  }).catch((e) => {
+    console.log(e)
+  })
+})
+
+apiRoutes.get('/getFeedBack', function (req, res) {
+  var url = 'http://localhost/api/public/index/admin/getFeedBack'
 
   axios.get(url, {
     params: req.query
